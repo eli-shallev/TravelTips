@@ -15,7 +15,10 @@
         <h1 class="logo">TravelTip</h1>
 
         <section class="loc-search">
-            <input type="text" placeholder="Enter Location">
+            <form onsubmit="onSearch(event)">
+                <input type="text" name="search" placeholder="Enter Location">
+                <button>🔍</button>
+            </form>
             <button class="btn-search">Go</button>
             <button class="btn-my-loc" onclick="onGetUserPos()">My Location</button>
         </section>
@@ -43,7 +46,7 @@
         <pre class="locs"></pre>
     </p> -->
 
-
+    <script src="lib/axios.js"></script>
     <script type="module" src="js/app.controller.js"></script>
 </body>
 
