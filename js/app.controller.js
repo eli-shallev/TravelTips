@@ -12,34 +12,12 @@ window.onSearch = onSearch
 
 function onSearch(ev) {
     if (ev) ev.preventDefault()
-    const elInputSearch = document.querySelector('input[name=search]')
-    const searchData = axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${elInputSearch.value}&key=AIzaSyB3YTMwlpvpzoH8xqyIROJIRqq4hG_RtyM`)
-    // const lat = searchData.data.results.geometry.location.lat
-    // const lng = searchData.data.results.geometry.location.lng
-    searchData.then(loc => {
-        // loc.data
+    const placeName = document.querySelector('input[name=search]').value
+    mapService.getLocationByName(placeName).then(loc => {
         const lat = (loc.data.results[0].geometry.location.lat)
-        console.log(lat)
         const lng = (loc.data.results[0].geometry.location.lng)
-        console.log(lng)
-        centerUserPos({ lat: lat, lng: lng })
+        mapService.centerUserPos(lat,lng )
     })
-    // }).then(loc => {
-    //     // loc.data
-    //     console.log(loc.results)
-    // })
-    // .then(loc => {
-    //     // loc.data
-    //     console.log(loc.results)
-    // })
-
-    // console.log(lat)
-    // console.log(lng)
-    // locService.getLocs(elInputSearch.value)
-    //     .then(locs => {
-    //         if (!locs.length) return
-    //         // playVideo(videos[0].id)
-    //     })
 }
 
 function onInit() {
@@ -76,7 +54,7 @@ function onGetLocs() {
 function onGetUserPos() {
     getPosition()
         .then(pos => {
-            mapService.centerUserPos(pos)
+            mapService.centerUserPos(pos.coords.latitude,pos.coords.longitude)
         })
         .catch(err => {
             console.log('err!!!', err)
@@ -85,10 +63,6 @@ function onGetUserPos() {
 function onPanTo(lat, lng) {
     console.log('Panning the Map')
     mapService.panTo(lat, lng)
-}
-
-function onMyLocation() {
-    onGetUserPos()
 }
 
 

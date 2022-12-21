@@ -2,7 +2,8 @@ export const mapService = {
     initMap,
     addMarker,
     panTo,
-    centerUserPos
+    centerUserPos,
+    getLocationByName
 }
 // Var that is used throughout this Module (not global)
 var gMap
@@ -19,6 +20,11 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             })
             console.log('Map!', gMap)
         })
+}
+
+function getLocationByName(placeName){
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${placeName}&key=AIzaSyB3YTMwlpvpzoH8xqyIROJIRqq4hG_RtyM`
+    return axios.get(url)
 }
 
 function addMarker(loc) {
@@ -49,7 +55,7 @@ function _connectGoogleApi() {
     })
 }
 
-function centerUserPos(pos){
-    gMap.setCenter({lat: pos.coords.latitude,lng: pos.coords.longitude})
+function centerUserPos(lat,lng){
+    gMap.setCenter({lat,lng})
 }
 // let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=48,48&key=AIzaSyCs25ULg84X5AAwQgzvEWyf9Caf-68w7Mk`
