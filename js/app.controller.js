@@ -57,4 +57,5 @@ function foo() {
     console.log('hhhhh')
     console.log('hhhhh')
     const x = 255
+    const y = 20
 }
