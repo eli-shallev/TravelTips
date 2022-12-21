@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelTip</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
 
     <header class="main-header">
@@ -13,9 +15,9 @@
         <h1 class="logo">TravelTip</h1>
 
         <section class="loc-search">
-           <input type="text" placeholder="Enter Location">
+            <input type="text" placeholder="Enter Location">
             <button class="btn-search">Go</button>
-            <button class="btn-my-loc">My Location</button>
+            <button class="btn-my-loc" onclick="onMyLocation()">My Location</button>
         </section>
 
     </header>
@@ -30,7 +32,7 @@
         <div id="map" class="map"></div>
     </section>
 
-    
+
     <!-- <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
     <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
     <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
@@ -40,8 +42,9 @@
     <p>Locations: 
         <pre class="locs"></pre>
     </p> -->
-    
+
 
     <script type="module" src="js/app.controller.js"></script>
 </body>
+
 </html>
