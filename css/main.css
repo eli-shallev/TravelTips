@@ -16,10 +16,19 @@ body {
     align-items: center;
 }
 
+.loc-search{
+    display: flex;
+    gap: 0.7em;
+}
+
 .main-loc {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.curr-loc{
+    font-size: 2em;
 }
 
 .main-content {
@@ -59,4 +68,8 @@ h1 {
 
 .name{
     font-weight: 700;
+}
+
+.loc{
+    font-size: 2em;
 }

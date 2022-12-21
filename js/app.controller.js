@@ -13,21 +13,32 @@ window.onSearch = onSearch
 function onSearch(ev) {
     if (ev) ev.preventDefault()
     const placeName = document.querySelector('input[name=search]').value
-    mapService.getLocationByName(placeName).then(loc => {
-        const lat = (loc.data.results[0].geometry.location.lat)
-        const lng = (loc.data.results[0].geometry.location.lng)
-        mapService.centerUserPos(lat,lng )
+    mapService.getLocationByName(placeName).then(pos => {
+        const {lat,lng} = pos
+        mapService.centerUserPos(lat, lng)
     })
+
 }
 
 function onInit() {
-    mapService.initMap()
+    const pos = getPosFromQueryParam()
+    mapService.initMap(+pos.lat,+pos.lng)
         .then(() => {
             console.log('Map is ready')
+            mapService.addClickEvent()
         })
         .catch(() => console.log('Error: cannot init map'))
 
+    
     renderPlacesTable()
+}
+
+function getPosFromQueryParam(){
+    const queryStringParams = new URLSearchParams(window.location.search)
+    return {
+        lat: queryStringParams.get('lat') || 32.0749831,
+        lng: +queryStringParams.get('lng') || 34.9120554
+    }
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -54,7 +65,7 @@ function onGetLocs() {
 function onGetUserPos() {
     getPosition()
         .then(pos => {
-            mapService.centerUserPos(pos.coords.latitude,pos.coords.longitude)
+            mapService.centerUserPos(pos.coords.latitude, pos.coords.longitude)
         })
         .catch(err => {
             console.log('err!!!', err)
@@ -67,8 +78,8 @@ function onPanTo(lat, lng) {
 
 
 function onDelete(placeId) {
-    placeService.remove(placeId)
-    renderPlacesTable()
+    placeService.remove(placeId).then(renderPlacesTable)
+
 }
 
 function renderPlacesTable() {
