@@ -1,3 +1,6 @@
+import { utilService } from './util.service.js'
+import { placeService } from './place.service.js'
+
 export const mapService = {
     initMap,
     addMarker,
@@ -7,6 +10,7 @@ export const mapService = {
     getNameByLocation,
     addClickEvent
 }
+
 // Var that is used throughout this Module (not global)
 var gMap
 
@@ -32,6 +36,9 @@ function addClickEvent() {
             const queryStringParams = `?&lat=${event.latLng.lat()}&lng=${event.latLng.lng()}`
             const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + queryStringParams
             window.history.pushState({ path: newUrl }, '', newUrl)
+
+            const newPlace = { id: '', name: name, lat: event.latLng.lat(), lng: event.latLng.lng(), weather: '', createdAt: Date.now(), updatedAt: Date.now() }
+            placeService.post(newPlace)
         })
 
     })
