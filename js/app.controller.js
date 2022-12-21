@@ -55,4 +55,5 @@ function onPanTo() {
 
 function foo(){
     console.log('hhhhh')
+    const x = 13
 }
