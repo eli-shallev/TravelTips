@@ -53,6 +53,7 @@ function onPanTo() {
     mapService.panTo(35.6895, 139.6917)
 }
 
-function foo(){
+function foo() {
+    console.log('hhhhh')
     console.log('hhhhh')
 }
