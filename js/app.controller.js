@@ -56,5 +56,5 @@ function onPanTo() {
 function foo() {
     console.log('hhhhh')
     console.log('hhhhh')
-    const x = 13
+    const x = 18
 }
