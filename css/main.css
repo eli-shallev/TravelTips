@@ -1,0 +1,28 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.main-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-loc{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-content{
+    display: flex;
+    gap: 1em;
+}

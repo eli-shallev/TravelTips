@@ -4,11 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelTip</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <h1>TravelTip Starter</h1>
-    <div id="map" style="width: 100%; height: 400px;"></div>
-    <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
+
+    <header class="main-header">
+
+        <h1 class="logo">TravelTip</h1>
+
+        <section class="loc-search">
+           <input type="text" placeholder="Enter Location">
+            <button class="btn-go">Go</button>
+            <button class="btn-my-loc">My Location</button>
+        </section>
+
+    </header>
+
+    <section class="main-loc">
+        <div class="loc">Location: <span class="curr-loc"></span></div>
+        <button class="copy-loc">Copy Location</button>
+    </section>
+
+    <section class="main-content">
+        <div class="loc-table"> </div>
+        <div id="map" style="width: 100%; height: 400px;"></div>
+    </section>
+
+    
+    <!-- <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
     <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
     <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
     <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button>
@@ -16,7 +39,7 @@
     <p>You are at: <span class="user-pos"></span></p>
     <p>Locations: 
         <pre class="locs"></pre>
-    </p>
+    </p> -->
     
 
     <script type="module" src="js/app.controller.js"></script>
