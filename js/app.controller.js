@@ -50,9 +50,9 @@ function onGetUserPos() {
             console.log('err!!!', err)
         })
 }
-function onPanTo() {
+function onPanTo(lat,lng) {
     console.log('Panning the Map')
-    mapService.panTo(35.6895, 139.6917)
+    mapService.panTo(lat, lng)
 }
 
 function renderPlacesTable() {
@@ -67,8 +67,8 @@ function renderPlacesTable() {
                 CreatedAt: <div class="created-at">${new Date(place.createdAt)}</div>
                 UpdateAt: <div class="updated-at">${new Date(place.updatedAt)}</div>
                 <div>
-                    <button class="btn-go" onclick ="">Go</button>
-                    <button class="btn-delete" onclick ="">Delete</button>
+                    <button class="btn-go" onclick="onPanTo(${place.lat},${place.lng})">Go</button>
+                    <button class="btn-delete" onclick="">Delete</button>
                 </div>
             </article>`
         }).join('')
