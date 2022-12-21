@@ -7,7 +7,11 @@ window.onAddMarker = onAddMarker
 window.onPanTo = onPanTo
 window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
+<<<<<<< HEAD
 window.onMyLocation = onMyLocation
+=======
+window.onDelete = onDelete
+>>>>>>> 485027fea9e4dd2eec8defb42b15975e5843e579
 
 function onInit() {
     mapService.initMap()
@@ -61,6 +65,11 @@ function onMyLocation() {
 }
 
 
+function onDelete(placeId) {
+    placeService.remove(placeId)
+    renderPlacesTable()
+}
+
 function renderPlacesTable() {
     placeService.query().then(places => {
         const elTable = document.querySelector('.loc-table')
@@ -74,7 +83,11 @@ function renderPlacesTable() {
                 UpdateAt: <div class="updated-at">${new Date(place.updatedAt)}</div>
                 <div>
                     <button class="btn-go" onclick="onPanTo(${place.lat},${place.lng})">Go</button>
+<<<<<<< HEAD
                     <button class="btn-delete" onclick="onDeletePlace()">Delete</button>
+=======
+                    <button class="btn-delete" onclick="onDelete('${place.id}')">Delete</button>
+>>>>>>> 485027fea9e4dd2eec8defb42b15975e5843e579
                 </div>
             </article>`
         }).join('')
