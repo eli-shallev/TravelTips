@@ -14,6 +14,8 @@ function onInit() {
             console.log('Map is ready')
         })
         .catch(() => console.log('Error: cannot init map'))
+
+    renderPlacesTable()
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -53,9 +55,22 @@ function onPanTo() {
     mapService.panTo(35.6895, 139.6917)
 }
 
-function foo() {
-    console.log('hhhhh')
-    console.log('hhhhh')
-    const x = 255
-    const y = 20
+function renderPlacesTable() {
+    placeService.query().then(places =>{
+        const elTable = document.querySelector('.loc-table')
+        elTable.innerHTML = places.map(place =>{
+            return `<article class="loc-container">
+                <div class="name">${place.name}</div>
+                <span class="lat">Lat: ${place.lat}</span>
+                <span class="lng">Lng: ${place.lng}</span>
+                <span class="weather">Weather: ${place.weather}</span>
+                CreatedAt: <div class="created-at">${new Date(place.createdAt)}</div>
+                UpdateAt: <div class="updated-at">${new Date(place.updatedAt)}</div>
+                <div>
+                    <button class="btn-go" onclick ="">Go</button>
+                    <button class="btn-delete" onclick ="">Delete</button>
+                </div>
+            </article>`
+        }).join('')
+    })
 }
