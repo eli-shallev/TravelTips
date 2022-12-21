@@ -7,6 +7,7 @@ window.onAddMarker = onAddMarker
 window.onPanTo = onPanTo
 window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
+window.onMyLocation = onMyLocation
 
 function onInit() {
     mapService.initMap()
@@ -50,15 +51,20 @@ function onGetUserPos() {
             console.log('err!!!', err)
         })
 }
-function onPanTo(lat,lng) {
+function onPanTo(lat, lng) {
     console.log('Panning the Map')
     mapService.panTo(lat, lng)
 }
 
+function onMyLocation() {
+
+}
+
+
 function renderPlacesTable() {
-    placeService.query().then(places =>{
+    placeService.query().then(places => {
         const elTable = document.querySelector('.loc-table')
-        elTable.innerHTML = places.map(place =>{
+        elTable.innerHTML = places.map(place => {
             return `<article class="loc-container">
                 <div class="name">${place.name}</div>
                 <span class="lat">Lat: ${place.lat}</span>
@@ -68,7 +74,7 @@ function renderPlacesTable() {
                 UpdateAt: <div class="updated-at">${new Date(place.updatedAt)}</div>
                 <div>
                     <button class="btn-go" onclick="onPanTo(${place.lat},${place.lng})">Go</button>
-                    <button class="btn-delete" onclick="">Delete</button>
+                    <button class="btn-delete" onclick="onDeletePlace()">Delete</button>
                 </div>
             </article>`
         }).join('')
