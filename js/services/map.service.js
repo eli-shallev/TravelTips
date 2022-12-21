@@ -1,7 +1,8 @@
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+    centerUserPos
 }
 // Var that is used throughout this Module (not global)
 var gMap
@@ -36,7 +37,7 @@ function panTo(lat, lng) {
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = 'AIzaSyCs25ULg84X5AAwQgzvEWyf9Caf-68w7Mk'
+    const API_KEY = 'AIzaSyB3YTMwlpvpzoH8xqyIROJIRqq4hG_RtyM'
     var elGoogleApi = document.createElement('script')
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`
     elGoogleApi.async = true
@@ -48,8 +49,7 @@ function _connectGoogleApi() {
     })
 }
 
-function centerMap(lat, lng) {
-    gMap.setCenter({ lat, lng })
+function centerUserPos(pos){
+    gMap.setCenter({lat: pos.coords.latitude,lng: pos.coords.longitude})
 }
-
 // let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=48,48&key=AIzaSyCs25ULg84X5AAwQgzvEWyf9Caf-68w7Mk`

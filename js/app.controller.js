@@ -7,11 +7,7 @@ window.onAddMarker = onAddMarker
 window.onPanTo = onPanTo
 window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
-<<<<<<< HEAD
-window.onMyLocation = onMyLocation
-=======
 window.onDelete = onDelete
->>>>>>> 485027fea9e4dd2eec8defb42b15975e5843e579
 
 function onInit() {
     mapService.initMap()
@@ -47,9 +43,7 @@ function onGetLocs() {
 function onGetUserPos() {
     getPosition()
         .then(pos => {
-            console.log('User position is:', pos.coords)
-            document.querySelector('.user-pos').innerText =
-                `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
+            mapService.centerUserPos(pos)
         })
         .catch(err => {
             console.log('err!!!', err)
@@ -61,7 +55,7 @@ function onPanTo(lat, lng) {
 }
 
 function onMyLocation() {
-
+    onGetUserPos()
 }
 
 
@@ -83,11 +77,7 @@ function renderPlacesTable() {
                 UpdateAt: <div class="updated-at">${new Date(place.updatedAt)}</div>
                 <div>
                     <button class="btn-go" onclick="onPanTo(${place.lat},${place.lng})">Go</button>
-<<<<<<< HEAD
-                    <button class="btn-delete" onclick="onDeletePlace()">Delete</button>
-=======
                     <button class="btn-delete" onclick="onDelete('${place.id}')">Delete</button>
->>>>>>> 485027fea9e4dd2eec8defb42b15975e5843e579
                 </div>
             </article>`
         }).join('')
